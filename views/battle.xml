@@ -1,0 +1,127 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="warcraft.battle_calendar_view">
+            <field name="name">Warcraft battle calendar</field>
+            <field name="model">warcraft.battle</field>
+            <field name="arch" type="xml">
+                <calendar string="Battles" date_start="start" date_stop="end" color="townhall1">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="warcraft.battle_form_view">
+            <field name="name">Warcraft battle form</field>
+            <field name="model">warcraft.battle</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet><group>
+                        <field name="name"/>
+                        <field name="townhall1" />
+                        <field name="townhall2"/>
+                        <field name="start"/>
+                        <field name="end"/>
+                        <field name="total_time"/>
+                        <field name="remaining_time"/>
+                        <field name="progress" widget="progressbar"/>
+                        <field name="units1"/>
+                    </group></sheet>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="warcraft.units_list_view">
+            <field name="name">Warcraft units List</field>
+            <field name="model">warcraft.unit</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="townhall"/>
+                    <field name="soldier"/>
+                    <field name="archer"/>
+                    <field name="training"/>
+                    <field name="total_soldiers"/>
+                    <field name="time_training"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="warcraft.battle_wizard_view">
+            <field name="name">Warcraft battle wizard</field>
+            <field name="model">warcraft.battle_wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                        <button name="action_previous" type="object"
+                                string="Previous" states="units,dates"
+                        />
+                        <button name="action_previous" type="object"
+                                string="Previous" states="townhalls"
+                                 class="oe_highlight disabled"
+                        />
+                        <button name="action_next" type="object"
+                                string="Next"
+                                states="townhalls,units"
+                                class="oe_highlight"
+                        context="{'wizard_available_units': available_units}"
+                        />
+                        <button name="action_next" type="object"
+                                string="Next"
+                                states="dates"
+                                class="oe_highlight  disabled"/>
+
+                    </header>
+                    <sheet>
+                        <group states="townhalls">
+                            <field name="name"/>
+                            <field name="townhall1" />
+                            <field name="townhall2"/>
+                        </group>
+                        <group states="units">
+                            <field name="available_units">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="soldiers"/>
+                                    <field name="archers"/>
+                                    <field name="total_soldiers"/>
+                                    <button name="assign_to_battle"
+                                            type="object"
+                                            string="Assign To battle"
+                                            class="oe_highlight"
+                                            context="{'battle_wizard_context': parent.id}"   />
+                                    <field name="selected" widget="boolean_toggle"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group states="dates">
+                            <field name="start"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button states="dates" name="create_battle" type="object"
+                                string="Create Battle" class="oe_highlight"/>
+                        <button states="townhalls,units" name="create_battle" type="object"
+                                string="Create Battle" class="oe_highlight disabled"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record id="warcraft.launch_battle_wizard" model="ir.actions.act_window">
+            <field name="name">Launch battle wizard</field>
+            <field name="res_model">warcraft.battle_wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

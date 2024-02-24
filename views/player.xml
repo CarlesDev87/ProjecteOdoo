@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="warcraft.players_list_view">
+            <field name="name">Warcraft Players List</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="hero"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="warcraft.players_search_view">
+            <field name="name">warcraft players search</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter name="is_player" string="Is Player" domain="[('is_player','=',True)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="warcraft.players_partners_form_view_inherit">
+            <field name="name">warcraft players form inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+               <xpath expr="//field[@name='vat']" position="after">
+                <field name="is_player"/>
+               </xpath>
+
+                <notebook position="inside">
+                    <page string="Player">
+                        <group>
+                             <field name="name"/>
+                             <field name="is_player"/>
+                            <field name="hero"/>
+                            <field name="townhalls"/>
+
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="warcraft.players_form_view">
+            <field name="name">Warcraft Players Form</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet><group>
+                        <separator string="Avatar"></separator>
+                        <field name="avatar" widget="image" class="oe_avatar"/>
+                        <separator string="Hero Name"></separator>
+                        <h2><field name="name"/></h2>
+                    </group>
+                        <notebook>
+                            <page string="Townhalls">
+                                <field name="townhalls" mode="kanban"/>
+                            </page>
+                            <page string="Heros">
+                                <field name="hero" mode="kanban"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
+

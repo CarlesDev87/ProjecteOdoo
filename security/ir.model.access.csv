@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+"","","","","","","",""
+access_warcraft_hero,warcraft.hero,model_warcraft_hero,base.group_user,1,1,1,1
+access_warcraft_townhall,warcraft.townhall,model_warcraft_townhall,base.group_user,1,1,1,1
+access_warcraft_building,warcraft.building,model_warcraft_building,base.group_user,1,1,1,1
+access_warcraft_building_type,warcraft.building_type,model_warcraft_building_type,base.group_user,1,1,1,1
+access_warcraft_unit,warcraft.unit,model_warcraft_unit,base.group_user,1,1,1,1
+access_warcraft_battle,warcraft.battle,model_warcraft_battle,base.group_user,1,1,1,1
+access_warcraft_building_wizard,warcraft.building_wizard,model_warcraft_building_wizard,base.group_user,1,1,1,1
+access_warcraft_battle_wizard,warcraft.battle_wizard,model_warcraft_battle_wizard,base.group_user,1,1,1,1
+access_warcraft_battle_wizard_unit,warcraft.battle_wizard_unit,model_warcraft_battle_wizard_unit,base.group_user,1,1,1,1

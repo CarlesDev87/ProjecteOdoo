@@ -1,0 +1,82 @@
+<odoo>
+    <data>
+
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="warcraft.action_window_player">
+            <field name="name">Warcraft Players</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_player', '=', True)]</field>
+            <field name="context">{'default_is_player' : True}</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('warcraft.players_list_view')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('warcraft.players_form_view')}),]" />
+        </record>
+
+        <record model="ir.actions.act_window" id="warcraft.action_window_hero">
+            <field name="name">Warcraft Heros</field>
+            <field name="res_model">warcraft.hero</field>
+            <field name="context">{'search_default_group_by_city': 1}</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="warcraft.action_window_townhall">
+            <field name="name">Warcraft Townhall</field>
+            <field name="res_model">warcraft.townhall</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="warcraft.action_window_buildings">
+            <field name="name">Warcraft Buildings</field>
+            <field name="res_model">warcraft.building</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="warcraft.action_window_building_type">
+            <field name="name">Warcraft Building Type</field>
+            <field name="res_model">warcraft.building_type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="warcraft.action_window_unit">
+            <field name="name">Warcraft Unit</field>
+            <field name="res_model">warcraft.unit</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="warcraft.action_window_battle">
+            <field name="name">Warcraft Battle</field>
+            <field name="res_model">warcraft.battle</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Top menu item -->
+
+        <menuitem name="Warcraft" id="warcraft.menu_root" action="warcraft.action_window_player"/>
+
+        <!-- menu categories -->
+
+        <menuitem name="Management" id="warcraft.menu_manager" parent="warcraft.menu_root"/>
+
+
+        <!-- actions -->
+
+        <menuitem name="Players List" id="warcraft.players_list" parent="warcraft.menu_manager"
+                  action="warcraft.action_window_player"/>
+        <menuitem name="Heros List" id="warcraft.hero_list" parent="warcraft.menu_manager"
+                  action="warcraft.action_window_hero"/>
+        <menuitem name="Townhall List" id="warcraft.townhall_list" parent="warcraft.menu_manager"
+                  action="warcraft.action_window_townhall"/>
+        <menuitem name="Townhall Building" id="warcraft.building_list" parent="warcraft.menu_manager"
+                  action="warcraft.action_window_buildings"/>
+        <menuitem name="Townhall Building Type" id="warcraft.buildingType_list" parent="warcraft.menu_manager"
+                  action="warcraft.action_window_building_type"/>
+        <menuitem name="Units" id="warcraft.menu_unit" parent="warcraft.menu_manager"
+                  action="warcraft.action_window_unit"/>
+        <menuitem name="Battles" id="warcraft.menu_battles" parent="warcraft.menu_manager"
+                  action="warcraft.action_window_battle"/>
+
+    </data>
+</odoo>

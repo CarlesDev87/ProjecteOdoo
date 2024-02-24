@@ -1,0 +1,85 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="warcraft.hero_list_view">
+            <field name="name">Warcraft Hero list</field>
+            <field name="model">warcraft.hero</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="player"/>
+                    <field name="race"/>
+                    <field name="townhall"/>
+                    <field name="level"/>
+                    <field name="experience"/>
+                    <field name="health"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="warcraft.hero_form_view">
+            <field name="name">Warcraft Hero form</field>
+            <field name="model">warcraft.hero</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="avatar" widget="image" class="oe_avatar"/>
+                            <field name="name"/>
+                            <field name="player"/>
+                            <field name="townhall"/>
+                            <field name="level"/>
+                            <field name="race"/>
+                            <field name="experience"/>
+                            <field name="health"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="warcraft.hero_kanban_view">
+            <field name="name">Warcraft hero kanban</field>
+            <field name="model">warcraft.hero</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_color_{{kanban_getcolor(record.townhall.raw_value)}}">
+                                <div t-attf-class="oe_kanban_global_click">
+                                    <div class="oe_kanban_details d-flex flex-column">
+                                        <a type="open">
+                                        </a>
+                                        <div t-attf-class="oe_kanban_content">
+                                            <h4>
+                                                <a type="edit">
+                                                    <field name="name"></field>
+                                                </a>
+                                            </h4>
+                                            <ul>
+                                                <li>Townhall:
+                                                    <field name="townhall"></field>
+                                                </li>
+                                                <li>Race:
+                                                    <field name="race"></field>
+                                                </li>
+                                                <li>Player:
+                                                    <field name="player"></field>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+
+
+            </field>
+        </record>
+    </data>
+</odoo>
+
+

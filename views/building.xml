@@ -1,0 +1,109 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="warcraft.building_list_view">
+            <field name="name">Warcraft Building List</field>
+            <field name="model">warcraft.building</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="gold_production"/>
+                    <field name="wood_production"/>
+                    <field name="food_production"/>
+                    <field name="units_production"/>
+                    <field name="gold_price"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="warcraft.building_form_view">
+            <field name="name">Warcraft buildings form</field>
+            <field name="model">warcraft.building</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <separator string="image"></separator>
+                            <field name="icon" widget="image" class="oe_avatar"/>
+                            <separator string="basic info"></separator>
+                            <field name="type"/>
+                            <field name="name"/>
+                            <field name="townhall"/>
+                            <field name="level"/>
+                            <separator string="production"></separator>
+                            <button name="update_building" type="object" string="Update" class="oe_highlight"/>
+                            <field name="update_percent"/>
+                            <field name="gold_production"/>
+                            <field name="wood_production"/>
+                            <field name="food_production"/>
+                            <field name="units_production"/>
+                            <field name="gold_price"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="warcraft.building_type_form_view">
+            <field name="name">Warcraft buildings type form</field>
+            <field name="model">warcraft.building_type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="icon" widget="image"/>
+                            <field name="name"/>
+                            <field name="gold_price"/>
+                            <separator string="resources production"></separator>
+                            <field name="gold_production"/>
+                            <field name="wood_production"/>
+                            <field name="food_production"/>
+                            <separator string="war productions"></separator>
+                            <field name="units_production"/>
+                        </group>
+                    </sheet>
+                </form>
+
+            </field>
+
+        </record>
+
+
+        <!-- HEMOS CREADO LA VISTA FORM PARA EL WIZARD -->
+
+        <record model="ir.ui.view" id="warcraft.building_wizard_form_view">
+            <field name="name">Warcraft buildings form wizard</field>
+            <field name="model">warcraft.building_wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <separator string="image"></separator>
+                            <field name="icon" widget="image" class="oe_avatar"/>
+                            <separator string="basic info"></separator>
+                            <field name="type"/>
+                            <field name="name"/>
+                            <field name="townhall"/>
+                            <field name="level"/>
+                        </group>
+                        <footer>
+                        <button name="create_building" type="object"
+                                string="Create" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="launch_warcraft_building_wizard" model="ir.actions.act_window">
+            <field name="name">Launch Building</field>
+            <field name="res_model">warcraft.building_wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="model_warcraft_building"/>
+        </record>
+
+    </data>
+</odoo>
